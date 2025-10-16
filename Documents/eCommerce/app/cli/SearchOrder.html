@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Order</title>
+    <link rel="stylesheet" href="css/formulari.css">
+</head>
+<body>
+    <header>
+        <img src="https://media.discordapp.net/attachments/913813412109234248/1427337590041739454/Ilustracion_sin_titulo.png?ex=68ee7f38&is=68ed2db8&hm=f56ca224e817470307a6db4bfe974bae3fea272121ad9b63653c6b1d2a656713&=&format=webp&quality=lossless&width=616&height=616"
+            alt="App Logo" class="logo" width="100" height="100">
+        <h1>Julia & Tech</h1>
+        <div class="button-group">
+            <button onclick="location.href='index.html'">
+                Return to main page
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Search Order</h1>
+        
+        <form id="searchForm">
+            <fieldset>
+                <legend>Enter Order ID:</legend>
+                
+                <div>
+                    <label for="order_id">Order ID:</label>
+                    <input type="text" placeholder="Enter order ID" id="order_id" name="order_id" required />
+                    <span class="error" id="errorOrderId"></span>
+                </div>
+
+                <input type="submit" value="Search Order">
+            </fieldset>
+        </form>
+
+        <div id="orderResult" style="margin-top: 20px; display: none;"></div>
+        
+        <div style="margin-top: 20px;">
+            <button onclick="location.href='menu.html'">Back to Operations Menu</button>
+            <button onclick="location.href='index.html'">Back to Main Page</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const orderId = document.getElementById('order_id').value.trim();
+            const errorElement = document.getElementById('errorOrderId');
+            
+            // Clear previous error
+            errorElement.textContent = '';
+            
+            if (!orderId) {
+                errorElement.textContent = 'Order ID is required';
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('order_id', orderId);
+            
+            fetch('/ecommerce/app/srv/search_order.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById('orderResult');
+                
+                if (data.success) {
+                    const order = data.order;
+                    resultDiv.style.backgroundColor = '#d4edda';
+                    resultDiv.style.color = '#155724';
+                    resultDiv.innerHTML = `
+                        <h3>Order Found:</h3>
+                        <p><strong>Order ID:</strong> ${order.order_id}</p>
+                        <p><strong>Customer:</strong> ${order.customer_name} ${order.customer_surname}</p>
+                        <p><strong>Email:</strong> ${order.email}</p>
+                        <p><strong>Phone:</strong> ${order.phone}</p>
+                        <p><strong>Address:</strong> ${order.address}</p>
+                        <p><strong>Date:</strong> ${order.timestamp}</p>
+                        <p><strong>Items:</strong></p>
+                        <ul>
+                            ${order.items.map(item => 
+                                `<li>${item.name}: ${item.quantity} x €${item.price.toFixed(2)} = €${item.total.toFixed(2)}</li>`
+                            ).join('')}
+                        </ul>
+                        <p><strong>Subtotal:</strong> €${order.subtotal.toFixed(2)}</p>
+                        <p><strong>VAT (21%):</strong> €${order.vat.toFixed(2)}</p>
+                        <p><strong>Total with VAT:</strong> €${order.total_with_vat.toFixed(2)}</p>
+                    `;
+                } else {
+                    resultDiv.style.backgroundColor = '#f8d7da';
+                    resultDiv.style.color = '#721c24';
+                    resultDiv.innerHTML = `<p>Error: ${data.error}</p>`;
+                }
+                resultDiv.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const resultDiv = document.getElementById('orderResult');
+                resultDiv.style.backgroundColor = '#f8d7da';
+                resultDiv.style.color = '#721c24';
+                resultDiv.innerHTML = '<p>Error searching for order</p>';
+                resultDiv.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

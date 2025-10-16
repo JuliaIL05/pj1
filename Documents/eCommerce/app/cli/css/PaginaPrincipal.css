@@ -1,0 +1,45 @@
+body {
+    background-image: url(/ecommerce/app/cli/img/imagen2.jpg);
+    color: rgb(236, 171, 190);
+}
+
+button {
+    background-color: #834a51;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+    
+
+}
+button:hover {box-shadow:0 8px 16px 0 rgba(139, 8, 8, 0.6);}
+button {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6)}
+
+h1 {
+    font-weight: 100;
+    font-size: 80px;
+}
+main {
+    background-color: rgba(0, 0, 0, 0.411);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 100px;
+    border-radius: 30px;
+}
+
+header {
+    background-color: rgba(29, 8, 11, 0.842);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 10px;
+    color: rgb(236, 171, 190);
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 20px;
+}

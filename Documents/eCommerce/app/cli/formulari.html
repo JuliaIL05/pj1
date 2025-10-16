@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="css/formulari.css">
+    <link rel="shortcut icon" href="https://cdn-icons-png.freepik.com/512/12443/12443805.png" type="image/x-icon">
+    <!-- SOLO UNA VEZ el script -->
+    <script src="javascript/formulari.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <img src="https://media.discordapp.net/attachments/913813412109234248/1427337590041739454/Ilustracion_sin_titulo.png?ex=68ee7f38&is=68ed2db8&hm=f56ca224e817470307a6db4bfe974bae3fea272121ad9b63653c6b1d2a656713&=&format=webp&quality=lossless&width=616&height=616"
+            alt="App Logo" class="logo" width="100" height="100">
+        <h1>Julia & Tech</h1>
+        <div class="button-group">
+            <button onclick="location.href='index.html'" id="button">
+                Return to main page
+            </button>
+        </div> <!-- ¡FALTABA CERRAR ESTE DIV! -->
+    </header> <!-- ¡FALTABA CERRAR ESTE HEADER! -->
+
+    <div class="container">
+        <h1>Formulario</h1>
+
+        <!-- PRUEBA CON DIFERENTES RUTAS: -->
+
+            <!-- Opción 2: Si no funciona, prueba con esta: -->
+           <form id="miFormulario" action="/ecommerce/app/srv/form.php" method="POST">
+
+            <!-- Opción 3: O esta: -->
+            <!-- <form id="miFormulario" action="http://localhost/ecommerce/app/srv/form.php" method="POST"> -->
+
+            <fieldset>
+                <legend>Formulario:</legend>
+
+                <div>
+                    <label for="nom">Nom:</label>
+                    <input type="text" placeholder="entra el teu nom" id="nom" name="nom" required />
+                    <span class="error" id="errorNom"></span>
+                </div>
+
+                <div>
+                    <label for="cognom">Cognom:</label>
+                    <input type="text" placeholder="entra el teu cognom" id="cognom" name="cognom" required />
+                    <span class="error" id="errorCognom"></span>
+                </div>
+
+                <div>
+                    <label for="adresa">Adreça:</label>
+                    <input type="text" placeholder="entra la teva adreça" id="adresa" name="adresa" required />
+                    <span class="error" id="errorAdresa"></span>
+                </div>
+
+                <div>
+                    <label for="correu">Correu:</label>
+                    <input type="email" placeholder="entra el teu correu electronic" id="correu" name="correu"
+                        required />
+                    <span class="error" id="errorCorreu"></span>
+                </div>
+
+                <div>
+                    <label for="numTel">Núm/Tel:</label>
+                    <input type="tel" placeholder="123-456-789" id="numTel" name="numTel"
+                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" required />
+                    <span class="error" id="errorTel"></span>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="item1" name="items[]" value="item1">
+                    <label for="item1">Item1</label>
+                    <input type="number" id="quantitatItem1" name="quantitatItem1" min="0" max="50" value="0">
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="item2" name="items[]" value="item2">
+                    <label for="item2">Item2</label>
+                    <input type="number" id="quantitatItem2" name="quantitatItem2" min="0" max="50" value="0">
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="item3" name="items[]" value="item3">
+                    <label for="item3">Item3</label>
+                    <input type="number" id="quantitatItem3" name="quantitatItem3" min="0" max="50" value="0">
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="item4" name="items[]" value="item4">
+                    <label for="item4">Item4</label>
+                    <input type="number" id="quantitatItem4" name="quantitatItem4" min="0" max="50" value="0">
+                </div>
+
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Torna a començar">
+            </fieldset>
+        </form>
+    </div>
+    <div id="result" style="margin-top: 20px; padding: 15px; border-radius: 5px; display: none;"></div>
+
+</body>
+
+</html>
