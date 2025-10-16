@@ -1,0 +1,30 @@
+<?php
+$file = 'OnlineOrders.bd';
+
+// Leer órdenes anteriores
+$orders = [];
+if (file_exists($file)) {
+    $orders = json_decode(file_get_contents($file), true);
+    if (!is_array($orders)) {
+        $orders = [];
+    }
+}
+
+// Agregar nueva orden
+$newOrder = [
+    'id' => uniqid(),
+    'name' => $_POST['nom'],
+    'surname' => $_POST['cognom'],
+    'location' => $_POST['adresa'],
+    'email' => $_POST['correu'],
+    'phone' => $_POST['numTel'],
+    'products' => $_POST['productos'] ?? []
+];
+
+$orders[] = $newOrder;
+
+// Guardar todo en formato JSON en el archivo .bd
+file_put_contents($file, json_encode($orders, JSON_PRETTY_PRINT));
+
+echo "Order saved successfully!";
+?>

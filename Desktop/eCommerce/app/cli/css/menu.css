@@ -1,5 +1,18 @@
+header {
+    background-color: rgba(29, 8, 11, 0.842);
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 13px 10px;
+    color: rgb(236, 171, 190);
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 20px;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
 body {
-    background-image: url(/ecommerce/app/cli/img/imagen.png);
+    background-image: url(/ecommerce/app/cli/img/imagen2.jpg);
     color: aliceblue;
     background-size: cover;
     background-position: center;
@@ -9,7 +22,7 @@ body {
 }
 
 button {
-    background-color: rgb(236, 171, 190);
+    background-color: #834a51;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -20,29 +33,22 @@ button {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 20px;
-}
+    
 
+}
 button:hover {box-shadow:0 8px 16px 0 rgba(139, 8, 8, 0.6);}
 button {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6)}
 h1 {
     font-weight: 100;
     font-size: 80px;
+    margin: 0; 
+    text-align: center; 
+    flex: 1; 
 }
 main {
-    background-color: rgba(0, 0, 0, 0.614);
+    background-color: rgba(0, 0, 0, 0.411);
     max-width: 600px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 100px;
     border-radius: 30px;
-}
-
-header {
-    background-color: rgba(29, 8, 11, 0.842);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 13px 10px;
-    color: rgb(236, 171, 190);
-    border-radius: 0 0 10px 10px;
-    margin-bottom: 20px;
 }
